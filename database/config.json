@@ -1,0 +1,7 @@
+{
+  "database": "bddAigrefins",
+  "host": "127.0.0.1",
+  "username": "luccionij",
+  "password": null,
+  "dialect": "postgres"
+}
