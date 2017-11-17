@@ -20,11 +20,11 @@
             General
           </p>
           <ul class="menu-list">
-            <li><a href="/dashboard">Home</a></li>
-            <li><a class="is-active" href="/profil">Profil</a></li>
-            <li><a href="/modules">Modules</a></li>
-            <li><a href="/messenger">Messenger</a></li>
-            <li><a href="/logout">Log Out</a></li>
+            <li><a href="/users//dashboard">Home</a></li>
+            <li><a class="is-active" href="/users//profil">Profil</a></li>
+            <li><a href="/users//modules">Modules</a></li>
+            <li><a href="/users//messenger">Messenger</a></li>
+            <li><a href="/users//logout">Log Out</a></li>
           </ul>
         </aside>
       </div>
@@ -52,31 +52,31 @@
                   <div class="field">
                     <label class="label has-text-left">User Name</label>
                     <div class="control">
-                      <input name="userName" class="input is-small" type="text" autofocus="" />
+                      <input name="userName" value="<%= data.userName %>" class="input is-small" type="text" autofocus="" />
                     </div>
                   </div>
                   <div class="field">
                     <label class="label has-text-left">First Name</label>
                     <div class="control">
-                      <input name="firstName" class="input is-small" type="text" autofocus="" />
+                      <input name="firstName" value="<%= data.firstName %>" class="input is-small" type="text" autofocus="" />
                     </div>
                   </div>
                   <div class="field">
                     <label class="label has-text-left">Last Name</label>
                     <div class="control">
-                      <input name="lastName" class="input is-small" type="text" autofocus="" />
+                      <input name="lastName" value="<%= data.lastName %>" class="input is-small" type="text" autofocus="" />
                     </div>
                   </div>
                   <div class="field">
                     <label class="label has-text-left">Email</label>
                     <div class="control">
-                      <input name="email" class="input is-small" type="text" placeholder="xxx@xxx.com" autofocus="" />
+                      <input name="email" value="<%= data.email %>" class="input is-small" type="text" placeholder="xxx@xxx.com" autofocus="" />
                     </div>
                   </div>
                   <div class="field">
                     <label class="label has-text-left">Birth Date</label>
                     <div class="control">
-                      <input name="birthDate" class="input is-small" type="text" autofocus="" />
+                      <input name="birthDate" value="<%= data.birthDate %>" class="input is-small" type="text" autofocus="" />
                     </div>
                   </div>
                   <a class="button is-info" href="dashboard">

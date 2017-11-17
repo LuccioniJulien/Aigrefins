@@ -4,22 +4,16 @@ const router = express.Router();
 const db = require('../database/init');
 const user = require('../database/models/users');
 
+const fs = require('fs');
+
+const request = require('request');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
-
-let session = [];
+const path = require('path');
 
 /* GET home page. */
 router.get('/', (req, res) => {
   res.render('index');
-});
-
-router.get('/dashboard', (req, res) => {
-  let url = 'http://quotes.stormconsultancy.co.uk/random.json';
-  request(url, (error, response, body) => {
-    console.log(body);
-    res.render('dashboard', { message: JSON.parse(body) });
-  });
 });
 
 router.get('/signin', (req, res) => {
@@ -40,26 +34,24 @@ router.post('/signin', (req, res) => {
     } else if (data.checkPassword(userForm.password)) {
       console.log('ok signin');
 
-      req.session.users = req.session.users || [];
-
-      //mettre du code une session par utilisateur
-      console.log(req.session.users);
-      console.log(_.find(req.session.users, { userName: userForm.userName }));
-      if (_.find(req.session.users, { userName: userForm.userName }) != null) {
+      /*
+      req.session.user = req.session.user || [];
+      console.log(req.session.user);
+      if (_.indexOf(req.session.user, userForm.userName) != -1) {
         isConected == true;
       }
+      console.log(isConected);
+      */
+
       if (isConected) {
         res.render('signin');
       } else {
-        let sessionID = req.sessionID;
-        let sessions = {
-          sessionID: sessionID,
-          userName: userForm.userName
-        };
-
-        console.log(sessions);
-        req.session.users.push(sessions);
-        res.render('dashboard');
+        console.log(data.userName);
+        req.session.user = data.userName;
+        let url = 'http://quotes.stormconsultancy.co.uk/random.json';
+        request(url, (error, response, body) => {
+          res.render('dashboard', { message: JSON.parse(body), user: req.session.user });
+        });
       }
     } else {
       console.log('echec signin');
