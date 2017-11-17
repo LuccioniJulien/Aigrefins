@@ -1,6 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  let users_modules = sequelize.define('users_modules', {
+  let user_module = sequelize.define('users_modules', {});
 
-  });
-  return users_modules;
+  return user_module;
 };

@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
-  let modules = sequelize.define('modules', {
+  let module = sequelize.define('modules', {
     teacher: DataTypes.STRING,
     name: DataTypes.STRING
   });
-  return modules;
+  return module;
 };

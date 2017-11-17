@@ -6,7 +6,7 @@ let db = {};
 
 const config = require(path.join(__dirname, 'config.json'));
 
-db.sequelize = new Sequelize(config.database, config.username, config.password, {
+db = new Sequelize(config.database, config.username, config.password, {
   host: config.host,
   dialect: config.dialect
 });
@@ -19,8 +19,17 @@ fs
     return filename.indexOf('.') !== 0;
   })
   .forEach(filename => {
-    let model = db.sequelize.import(path.join(model_pathname, filename));
+    let model = db.import(path.join(model_pathname, filename));
     db[model.name] = model;
   });
-
+db.modules.belongsToMany(db.users, {
+  through: db.users_modules,
+  as: 'idModule',
+  foreignKey: 'idModule'
+});
+db.users.belongsToMany(db.modules, {
+  through: db.users_modules,
+  as: 'idUsers',
+  foreignKey: 'idUser'
+});
 module.exports = db;

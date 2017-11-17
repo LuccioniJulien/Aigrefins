@@ -1,12 +1,14 @@
-const express    = require('express');
-const path       = require('path');
-const moment     = require('moment');
+const express = require('express');
+const path = require('path');
+const moment = require('moment');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const request = require('request');
 
-const db = require('./database/init');
 
 const app = express();
 
+const db = require('./database/init');
 const index = require('./routes/index');
 const users = require('./routes/users');
 
@@ -14,6 +16,14 @@ const port = process.argv[2] || '4242';
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+  })
+);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,13 +40,15 @@ app.use((req, res, next) => {
   next(err);
 });
 
-db.sequelize.sync().then(() => {
-  console.log("Database config success!");
+db
+  .sync()
+  .then(() => {
+    console.log('Database config success!');
 
-  app.listen(port, (err) => {
-    console.log(`Server is running on port ${port}`);
+    app.listen(port, err => {
+      console.log(`Server is running on port ${port}`);
+    });
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
   });
-
-}).catch((err) => {
-  console.error('Unable to connect to the database:', err);
-});

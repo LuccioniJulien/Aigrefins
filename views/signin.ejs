@@ -7,32 +7,29 @@
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
   </head>
   <body>
-    <section class="hero is-fullheight is-dark">
+    <section class="hero is-fullheight is-link">
       <div class="hero-body">
         <div class="container has-text-centered">
           <div class="column is-4 is-offset-4">
             <h3 class="title">Sign In</h3>
             <div class="box">
-              <figure class="avatar">
-                <img src="../img/blason.png" width="150" height="30"/>
-              </figure>
-              <form id="mForm" method="POST" action="/add-user" enctype="application/json">
+              <form id="mForm" method="POST" action="/signin" enctype="application/json">
                 <div class="field">
-                  <label class="label has-text-left">Username</label>
+                  <label class="label has-text-centered">Username</label>
                   <div class="control">
-                    <input name="username" class="input is-small" type="text" autofocus="" />
+                    <input name="userName" class="input is-small" type="text" autofocus="" />
                   </div>
                 </div>
                 <div class="field">
                   <div class="control">
-                    <label class="label has-text-left">Password</label>
-                    <input name="username" class="input is-small" type="text" autofocus="" />
+                    <label class="label has-text-centered">Password</label>
+                    <input name="password" class="input is-small" type="password" autofocus="" />
                   </div>
                 </div>
-                <a class="button is-light" href="/signup">
+                <a class="button is-light is-small" href="/signup">
                   Signup here
                 </a>
-                <a class="button is-primary" href="">
+                <a class="button is-primary is-small is-link" href="/users/dashboard">
                   Log In
                 </a>
               </form>
